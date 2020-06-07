@@ -1,14 +1,19 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import { CommonModule } from '@angular/common';
+import { MaterialModule } from 'src/app/material.module';
+import { NgModule } from '@angular/core';
+import { PacientesListarComponent } from './pacientes-listar/pacientes-listar.component';
 import { PacientesRoutingModule } from './pacientes-routing.module';
 
-
 @NgModule({
-  declarations: [],
+  declarations: [PacientesListarComponent],
   imports: [
     CommonModule,
-    PacientesRoutingModule
+    PacientesRoutingModule,
+    MaterialModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class PacientesModule { }
