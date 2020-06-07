@@ -1,7 +1,7 @@
 <mat-card fxFlex>
   <mat-toolbar color="success">Especialidades
     <span fxFlex class="flex-spacer"></span>
-    <button mat-icon-button routerLink="" matTooltip="Registrar" color="primary" fxLayoutAlign="center" (click)="abrirEspecialidadFormDialog()" >
+    <button mat-icon-button routerLink="/especialidades/form" matTooltip="Registrar" color="primary" fxLayoutAlign="center">
       <mat-icon>add</mat-icon>
     </button>
     <button mat-icon-button color="accent" matTooltip="Principal" routerLink="/home">
@@ -57,7 +57,7 @@
           <mat-header-cell *matHeaderCellDef mat-sort-header>Acciones</mat-header-cell>
           <mat-cell *matCellDef="let row" data-label="acciones">
             <button mat-icon-button color="primary" matTooltip="Actualizar Especialidad"
-              routerLink="/modalidad-graduacion/listar/{{row.id}}">
+              routerLink="/especialidades/form/{{row.id}}">
               <mat-icon>create</mat-icon>
             </button>
             <button mat-icon-button color="warn" (click)="eliminar(row)" matTooltip="Eliminar Especialidad">

@@ -39,10 +39,10 @@ export class PacienteService {
     );
   }
 
-  ver(id: number): Observable<PacienteForm> {
+  ver(id: number): Observable<Paciente> {
     return this.http.get(this.url + '/' + id).pipe(
       map((response) => {
-        return response as PacienteForm;
+        return response as Paciente;
       })
     );
   }

@@ -28,23 +28,6 @@ export class EspecialiadesListarComponent implements OnInit {
     this.listar();
   }
 
-  abrirEspecialidadFormDialog(): void {
-    const dialogRef = this.dialogService.open(EspecialidadComponent, {
-      width: '700px',
-      data: {}
-    });
-
-    dialogRef.afterClosed()
-      .subscribe(result => {
-        if (result) {
-          //const clienteCreated: Cliente = result as Cliente;
-          //this.nombreCompletoCliente.setValue(`${clienteCreated.nombres} ${clienteCreated.apellidos}`);
-          //this.busqueda.setValue(clienteCreated.ciNit);
-          //this.clienteId.setValue(clienteCreated.id);
-        }
-      });
-  }
-
   listar(){
     this.especialidadService.listarEspecialidades().subscribe(
       response => {
