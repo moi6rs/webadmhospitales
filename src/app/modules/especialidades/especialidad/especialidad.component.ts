@@ -1,3 +1,4 @@
+import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
@@ -6,8 +7,8 @@ import {
   Validators,
 } from '@angular/forms';
 
+import { Especialidad } from 'src/app/models/especialidad.model';
 import { EspecialidadService } from 'src/app/Services/especialidad.service';
-import { MatDialogRef } from '@angular/material';
 
 @Component({
   selector: 'app-especialidad',
@@ -16,15 +17,35 @@ import { MatDialogRef } from '@angular/material';
 })
 export class EspecialidadComponent implements OnInit {
   especialidadForm: FormGroup;
+  titulo: string;
   constructor(
     private fb: FormBuilder,
-    public dialogRef: MatDialogRef<EspecialidadComponent>,
-    private especialidadService: EspecialidadService
-  ) {
+    private service: EspecialidadService,
+    protected route: ActivatedRoute,
+    private router: Router
+  ) {}
+
+  ngOnInit() {
     this.crearEspecialidadForm();
+    this.route.paramMap.subscribe((params) => {
+      const id: number = +params.get('id');
+      if (id) {
+        this.service.ver(id).subscribe((p) => {
+          this.setValueForm(p);
+          console.log(p);
+        });
+      } else {
+        this.titulo = 'Crear';
+      }
+    });
   }
 
-  ngOnInit() {}
+  private setValueForm(especialidad: Especialidad): void {
+    this.id.setValue(especialidad.id);
+    this.nombre.setValue(especialidad.nombre);
+    this.descripcion.setValue(especialidad.descripcion);
+    this.titulo = 'Editar';
+  }
 
   private crearEspecialidadForm() {
     this.especialidadForm = this.fb.group({
@@ -33,28 +54,41 @@ export class EspecialidadComponent implements OnInit {
       descripcion: [''],
     });
   }
-  cerrarDialog(): void {
-    this.dialogRef.close();
-  }
-  crearEspecialidad(): void {
-    this.especialidadService
-      .crearEspecialidad(this.especialidadForm.value)
-      .subscribe(
+  crearEspecialidad(value): void {
+    if (this.id.value === null) {
+      this.service.crear(value).subscribe(
         (response) => {
-          console.log('response: ', response);
-          this.dialogRef.close(response);
+          this.router.navigate(['/especialidades/listar']);
+        },
+        (error) => {
+          console.log('error: ', error);
+          alert('No se pudo Actualizar el Especialidad intentelo de nuevo');
+        }
+      );
+    } else {
+      this.service.actualizar(value).subscribe(
+        (response) => {
+          this.router.navigate(['/especialidades/listar']);
         },
         (error) => {
           console.log('error: ', error);
           alert('No se pudo registrar el Especialidad intentelo de nuevo');
         }
       );
+    }
   }
 
+  get id(): FormControl {
+    return this.especialidadForm.get('id') as FormControl;
+  }
   get nombre(): FormControl {
     return this.especialidadForm.get('nombre') as FormControl;
   }
-  get apellidos(): FormControl {
+  get descripcion(): FormControl {
     return this.especialidadForm.get('descripcion') as FormControl;
+  }
+  borrar(): void {
+    this.nombre.setValue('');
+    this.descripcion.setValue('');
   }
 }

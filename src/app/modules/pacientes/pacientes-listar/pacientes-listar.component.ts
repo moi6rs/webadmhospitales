@@ -1,35 +1,34 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatDialog, MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
+import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 
 import { BASE_ENDPOINT } from 'src/app/config/app';
-import { Especialidad } from 'src/app/models/especialidad.model';
-import { EspecialidadComponent } from '../especialidad/especialidad.component';
-import { EspecialidadService } from 'src/app/Services/especialidad.service';
+import { Paciente } from 'src/app/models/paciente.model';
+import { PacienteService } from 'src/app/Services/paciente.service';
 
 @Component({
-  selector: 'app-especialiades-listar',
-  templateUrl: './especialiades-listar.component.html',
-  styleUrls: ['./especialiades-listar.component.scss'],
+  selector: 'app-pacientes-listar',
+  templateUrl: './pacientes-listar.component.html',
+  styleUrls: ['./pacientes-listar.component.scss']
 })
-export class EspecialiadesListarComponent implements OnInit {
+export class PacientesListarComponent implements OnInit {
+
   dataSourceTable: MatTableDataSource<any>;
   // tslint:disable-next-line: max-line-length
-  displayedColumns: string[] = ['avatar','nombre', 'descripcion', 'fechaCreacion', 'fechaActualizacion', 'acciones'];
+  displayedColumns: string[] = ['foto', 'nombre', 'apellido', 'nacimiento', 'direccion', 'creacion', 'actualizacion', 'acciones'];
   @ViewChild(MatSort, { static: false }) sort: MatSort;
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
   searchKey: string;
   errorMessage = '';
-  baseEndpoint = BASE_ENDPOINT + '/especialidades';
-  constructor(private especialidadService: EspecialidadService,
-              private dialogService: MatDialog) {}
-  especialidades: Especialidad[];
+  baseEndpoint = BASE_ENDPOINT + '/pacientes';
+  constructor(private service: PacienteService) {}
+  especialidades: Paciente[];
 
   ngOnInit() {
     this.listar();
   }
 
   listar(){
-    this.especialidadService.listarEspecialidades().subscribe(
+    this.service.listar().subscribe(
       response => {
         this.dataSourceTable = new MatTableDataSource(response);
         this.dataSourceTable.sort = this.sort;
@@ -47,8 +46,8 @@ export class EspecialiadesListarComponent implements OnInit {
     this.applyFilter('');
   }
 
-  eliminar(especialidad: Especialidad){
-    this.especialidadService.eliminarEspecialidad(especialidad.id).subscribe(
+  eliminar(paciente: Paciente){
+    this.service.eliminar(paciente.id).subscribe(
       response => {
           console.log("eliminado");
       });

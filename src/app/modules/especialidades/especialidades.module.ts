@@ -15,7 +15,6 @@ import { NgModule } from '@angular/core';
     MaterialModule,
     ReactiveFormsModule,
     FormsModule
-  ],
-  entryComponents: [EspecialidadComponent]
+  ]
 })
 export class EspecialidadesModule { }
