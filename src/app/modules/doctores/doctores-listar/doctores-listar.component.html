@@ -1,1 +1,88 @@
-<p>doctores-listar works!</p>
+
+<mat-card fxFlex>
+  <mat-toolbar color="success">Doctores
+    <span fxFlex class="flex-spacer"></span>
+    <button mat-icon-button routerLink="/doctores/form" matTooltip="Registrar" color="primary" fxLayoutAlign="center">
+      <mat-icon>add</mat-icon>
+    </button>
+    <button mat-icon-button color="accent" matTooltip="Principal" routerLink="/home">
+      <mat-icon>open_in_new</mat-icon>
+    </button>
+  </mat-toolbar>
+
+  <mat-card-content>
+    <div class="example-header" fxLayout="row">
+      <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar">
+      </mat-form-field>
+    </div>
+
+    <div class="example-container mat-elevation-z8">
+      <mat-table [dataSource]="dataSourceTable" matSort>
+
+        <ng-container matColumnDef="foto">
+          <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
+          <mat-cell *matCellDef="let row" data-label="">
+            <img *ngIf="row.fotoHashCode"
+              [src]="baseEndpoint + '/uploads/img/' + row.id + '?fotoHashCode=' + row.fotoHashCode"
+              class="img-thumbnail rounded" style="width: 64px; cursor: pointer;">
+
+            <img *ngIf="!row.fotoHashCode" [src]="'/assets/images/especialidad.jpg'" class="img-thumbnail rounded"
+              style="width: 64px; cursor: pointer;">
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="nombre">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </mat-header-cell>
+          <mat-cell *matCellDef="let row" data-label="nombre">
+            {{row.nombre}}
+          </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="apellido">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Apellido </mat-header-cell>
+          <mat-cell *matCellDef="let row" data-label="nombre">
+            {{row.apellido}}
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="nacimiento">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Nacimiento </mat-header-cell>
+          <mat-cell *matCellDef="let row" data-label="Nacimiento"> {{row.fechaNacimiento | date: 'MM/dd/yyyy'}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="direccion">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Dirección </mat-header-cell>
+          <mat-cell *matCellDef="let row" data-label="direccion"> {{row.descripcion}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="creacion">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Creación </mat-header-cell>
+          <mat-cell *matCellDef="let row" data-label="creacion"> {{row.fechaCreacion | date: 'MM/dd/yyyy'}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="actualizacion">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Actualización </mat-header-cell>
+          <mat-cell *matCellDef="let row" data-label="atualizacion"> {{row.fechaActualizacion | date: 'MM/dd/yyyy'}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="acciones">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Acciones</mat-header-cell>
+          <mat-cell *matCellDef="let row" data-label="acciones">
+            <button mat-icon-button color="primary" matTooltip="Actualizar Paciente"
+            routerLink="/doctores/form/{{row.id}}">
+              <mat-icon>create</mat-icon>
+            </button>
+            <button mat-icon-button color="warn" (click)="eliminar(row)" matTooltip="Eliminar Paciente">
+              <mat-icon>delete_outline</mat-icon>
+            </button>
+          </mat-cell>
+        </ng-container>
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;">
+        </mat-row>
+      </mat-table>
+      <mat-paginator [pageSizeOptions]="[25, 50, 70, 100]"></mat-paginator>
+    </div>
+  </mat-card-content>
+</mat-card>
+
