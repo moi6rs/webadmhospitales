@@ -1,4 +1,4 @@
-import { BaseService } from './base.service';
+import { BASE_ENDPOINT } from '../config/app';
 import { Especialidad } from '../models/especialidad.model';
 import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
@@ -8,15 +8,14 @@ import {map} from 'rxjs/operators';
 @Injectable({
   providedIn: 'root',
 })
-export class EspecialidadService extends BaseService {
-
+export class EspecialidadService{
+  url: string;
   constructor(private http: HttpClient) {
-    super();
-    this.fullUrl = this.apiUrl + 'especialidades';
+    this.url = BASE_ENDPOINT + "especialidades"
   }
 
   listarEspecialidades(): Observable<Especialidad[]>{
-    return this.http.get("http://localhost:8080/especialidades").pipe(
+    return this.http.get(this.url).pipe(
       map(response => {
         return response as Especialidad[];
       })

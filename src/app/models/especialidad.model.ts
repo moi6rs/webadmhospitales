@@ -1,5 +1,8 @@
-export interface Especialidad{
+export interface Especialidad {
   id: number;
-  nombre: string
-  descripcon: string;
+  fechaCreacion: string;
+  fechaActualizacion: string;
+  nombre: string;
+  descripcion: string;
+  avatarHashCode: number;
 }

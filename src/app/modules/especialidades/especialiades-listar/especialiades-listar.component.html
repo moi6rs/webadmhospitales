@@ -1,5 +1,4 @@
 <mat-card fxFlex>
-
   <mat-toolbar color="success">Especialidades
     <span fxFlex class="flex-spacer"></span>
     <button mat-icon-button routerLink="" matTooltip="Registrar" color="primary" fxLayoutAlign="center">
@@ -13,21 +12,45 @@
   <mat-card-content>
     <div class="example-header" fxLayout="row">
       <mat-form-field>
-        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar">
       </mat-form-field>
     </div>
 
     <div class="example-container mat-elevation-z8">
       <mat-table [dataSource]="dataSourceTable" matSort>
 
+        <ng-container matColumnDef="avatar">
+          <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
+          <mat-cell *matCellDef="let row" data-label="">
+            <img *ngIf="row.avatarHashCode"
+              [src]="baseEndpoint + '/uploads/img/' + row.id + '?avatarHashCode=' + row.avatarHashCode"
+              class="img-thumbnail rounded" style="width: 64px; cursor: pointer;">
+
+            <img *ngIf="!row.avatarHashCode" [src]="'/assets/images/especialidad.jpg'" class="img-thumbnail rounded"
+              style="width: 64px; cursor: pointer;">
+          </mat-cell>
+        </ng-container>
+
         <ng-container matColumnDef="nombre">
           <mat-header-cell *matHeaderCellDef mat-sort-header> Nombre Especialidad </mat-header-cell>
-          <mat-cell *matCellDef="let row" data-label="nombre"> {{row.nombre}} </mat-cell>
+          <mat-cell *matCellDef="let row" data-label="nombre">
+            {{row.nombre}}
+          </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="descripcion">
           <mat-header-cell *matHeaderCellDef mat-sort-header> Descripcion Especialidad </mat-header-cell>
           <mat-cell *matCellDef="let row" data-label="descripcion"> {{row.descripcion}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="fechaCreacion">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Creación </mat-header-cell>
+          <mat-cell *matCellDef="let row" data-label="fechaCreacion"> {{row.fechaCreacion | date: 'MM/dd/yyyy'}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="fechaActualizacion">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Actualización </mat-header-cell>
+          <mat-cell *matCellDef="let row" data-label="fechaActualizacion"> {{row.fechaActualizacion | date: 'MM/dd/yyyy'}}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="acciones">
@@ -49,5 +72,4 @@
       <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
     </div>
   </mat-card-content>
-
 </mat-card>

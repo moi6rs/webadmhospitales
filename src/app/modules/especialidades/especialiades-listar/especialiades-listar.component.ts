@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 
+import { BASE_ENDPOINT } from 'src/app/config/app';
 import { Especialidad } from 'src/app/models/especialidad.model';
 import { EspecialidadService } from 'src/app/Services/especialidad.service';
 
@@ -12,12 +13,12 @@ import { EspecialidadService } from 'src/app/Services/especialidad.service';
 export class EspecialiadesListarComponent implements OnInit {
   dataSourceTable: MatTableDataSource<any>;
   // tslint:disable-next-line: max-line-length
-  displayedColumns: string[] = ['nombre','descripcion','acciones'];
+  displayedColumns: string[] = ['avatar','nombre', 'descripcion', 'fechaCreacion', 'fechaActualizacion', 'acciones'];
   @ViewChild(MatSort, { static: false }) sort: MatSort;
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
   searchKey: string;
   errorMessage = '';
-
+  baseEndpoint = BASE_ENDPOINT + '/especialidades';
   constructor(private especialidadService: EspecialidadService) {}
   especialidades: Especialidad[];
 
