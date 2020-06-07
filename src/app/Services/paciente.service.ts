@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Paciente } from '../models/paciente.model';
-import { PacienteForm } from '../models/pacient-form.model';
 import { map } from 'rxjs/operators';
 
 @Injectable({
