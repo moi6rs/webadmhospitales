@@ -1,8 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
+import { MatDialog, MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 
 import { BASE_ENDPOINT } from 'src/app/config/app';
 import { Especialidad } from 'src/app/models/especialidad.model';
+import { EspecialidadComponent } from '../especialidad/especialidad.component';
 import { EspecialidadService } from 'src/app/Services/especialidad.service';
 
 @Component({
@@ -19,11 +20,29 @@ export class EspecialiadesListarComponent implements OnInit {
   searchKey: string;
   errorMessage = '';
   baseEndpoint = BASE_ENDPOINT + '/especialidades';
-  constructor(private especialidadService: EspecialidadService) {}
+  constructor(private especialidadService: EspecialidadService,
+              private dialogService: MatDialog) {}
   especialidades: Especialidad[];
 
   ngOnInit() {
     this.listar();
+  }
+
+  abrirEspecialidadFormDialog(): void {
+    const dialogRef = this.dialogService.open(EspecialidadComponent, {
+      width: '700px',
+      data: {}
+    });
+
+    dialogRef.afterClosed()
+      .subscribe(result => {
+        if (result) {
+          //const clienteCreated: Cliente = result as Cliente;
+          //this.nombreCompletoCliente.setValue(`${clienteCreated.nombres} ${clienteCreated.apellidos}`);
+          //this.busqueda.setValue(clienteCreated.ciNit);
+          //this.clienteId.setValue(clienteCreated.id);
+        }
+      });
   }
 
   listar(){

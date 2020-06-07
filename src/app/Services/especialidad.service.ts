@@ -21,4 +21,12 @@ export class EspecialidadService{
       })
     );
   }
+
+  crearEspecialidad(especialidad: Especialidad): Observable<Especialidad> {
+    return this.http.post(this.url, especialidad).pipe(
+      map(response => {
+        return response as Especialidad;
+      })
+    );
+  }
 }
