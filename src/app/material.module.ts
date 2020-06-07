@@ -110,7 +110,8 @@ import {NgModule} from '@angular/core';
     FlexLayoutModule,
     MatListModule,
     MatDividerModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatDialogModule
   ],
   providers: [DatePipe]
 })

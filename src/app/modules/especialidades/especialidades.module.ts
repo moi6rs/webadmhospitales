@@ -1,14 +1,21 @@
-import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 import { CommonModule } from '@angular/common';
-
+import { EspecialiadesListarComponent } from './especialiades-listar/especialiades-listar.component';
+import { EspecialidadComponent } from './especialidad/especialidad.component';
 import { EspecialidadesRoutingModule } from './especialidades-routing.module';
-
+import { MaterialModule } from 'src/app/material.module';
+import { NgModule } from '@angular/core';
 
 @NgModule({
-  declarations: [],
+  declarations: [EspecialiadesListarComponent, EspecialidadComponent],
   imports: [
     CommonModule,
-    EspecialidadesRoutingModule
-  ]
+    EspecialidadesRoutingModule,
+    MaterialModule,
+    ReactiveFormsModule,
+    FormsModule
+  ],
+  entryComponents: [EspecialidadComponent]
 })
 export class EspecialidadesModule { }
