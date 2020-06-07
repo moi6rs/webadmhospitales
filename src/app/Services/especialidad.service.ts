@@ -29,4 +29,12 @@ export class EspecialidadService{
       })
     );
   }
+
+  eliminarEspecialidad(especialidaId: number): Observable<any> {
+    return this.http.delete(this.url +"/"+ especialidaId).pipe(
+      map(response => {
+        return response;
+      })
+    );
+  }
 }

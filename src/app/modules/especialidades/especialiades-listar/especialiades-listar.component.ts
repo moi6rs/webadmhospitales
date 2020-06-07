@@ -64,7 +64,10 @@ export class EspecialiadesListarComponent implements OnInit {
     this.applyFilter('');
   }
 
-  eliminar(item){
-
-  }
+  eliminar(especialidad: Especialidad){
+    this.especialidadService.eliminarEspecialidad(especialidad.id).subscribe(
+      response => {
+          console.log("eliminado");
+      });
+    }
 }
