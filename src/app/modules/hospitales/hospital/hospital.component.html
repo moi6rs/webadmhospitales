@@ -1,0 +1,36 @@
+<mat-card fxFlex>
+  <mat-toolbar color="success">{{titulo}} Hospital
+    <span fxFlex class="flex-spacer"></span>
+    <button mat-icon-button color="accent" matTooltip="Lista Pacientes" routerLink="/hospitales/listar">
+      <mat-icon>open_in_new</mat-icon>
+    </button>
+  </mat-toolbar>
+  <br>
+  <mat-card-content>
+    <form fxLayout="column" [formGroup]="hospitalForm" (submit)="crearEspecialidad(hospitalForm.value)">
+      <div class="input-row" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px" fxLayoutGap.lt-md="0px">
+        <mat-form-field appearance="outline" fxFlex>
+          <mat-label>Nombre Hospital</mat-label>
+          <input formControlName="nombreHospital" matInput placeholder="Nombre Hospital">
+          <mat-error *ngIf="nombreHospital.invalid && (nombreHospital.dirty || nombreHospital.touched) && nombreHospital.hasError('required')">
+            Este campo es <strong>requerido</strong>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline" fxFlex>
+          <mat-label>Descripción de Hospital</mat-label>
+          <input formControlName="direccion" matInput placeholder="direccion">
+          <mat-error *ngIf="direccion.invalid && (direccion.dirty || direccion.touched) && direccion.hasError('required')">
+            Este campo es <strong>requerido</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="button-row" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px" fxLayoutGap.lt-md="0px">
+        <button mat-raised-button color="primary" type="submit" [disabled]="hospitalForm.invalid">Registrar
+        </button>
+        <button mat-raised-button color="warn" (click)="borrar()">Cancelar</button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>
+
