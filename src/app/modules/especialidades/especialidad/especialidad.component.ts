@@ -54,7 +54,7 @@ export class EspecialidadComponent implements OnInit {
   get nombre(): FormControl {
     return this.especialidadForm.get('nombre') as FormControl;
   }
-  get apellidos(): FormControl {
+  get descripcion(): FormControl {
     return this.especialidadForm.get('descripcion') as FormControl;
   }
 }
