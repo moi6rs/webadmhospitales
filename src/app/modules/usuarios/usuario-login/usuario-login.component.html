@@ -1,0 +1,28 @@
+<br>
+<H1>hols</H1>
+
+<div class="container" fxLayout="row" fxLayoutAlign="center center">
+  <div class="container mat-elevation-z2" fxLayout="column">
+    <form [formGroup]="loginForm" (ngSubmit)="loginUsuario(loginForm.value)">
+      <mat-card>
+        <mat-toolbar color="primary">
+          <span>Inicia Sesión:</span>
+        </mat-toolbar>
+        <br>
+        <mat-form-field appearance="outline" class="example-full-width">
+          <mat-label>Usuario:</mat-label>
+          <input matInput formControlName="usuario" type="text" placeholder="Usuario">
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="example-full-width">
+          <mat-label>Contraseña:</mat-label>
+          <input matInput formControlName="password" type="password" placeholder="Password">
+        </mat-form-field>
+        <button mat-raised-button color="accent" class="example-full-width">Aceptar</button>
+        <button mat-raised-button color="warn" class="example-full-width" type="reset">Cancelar
+        </button>
+      </mat-card>
+    </form>
+  </div>
+</div>
+<br>
+

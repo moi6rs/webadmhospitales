@@ -23,7 +23,7 @@
           <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
           <mat-cell *matCellDef="let row" data-label="">
             <img *ngIf="row.avatarHashCode"
-              [src]="baseEndpoint + '/uploads/img/' + row.id + '?avatarHashCode=' + row.avatarHashCode"
+              [src]="baseEndpoint + '/especialidad/img/' + row.id + '?avatarHashCode=' + row.avatarHashCode"
               class="img-thumbnail rounded" style="width: 64px; cursor: pointer;">
 
             <img *ngIf="!row.avatarHashCode" [src]="'/assets/images/especialidad.jpg'" class="img-thumbnail rounded"
