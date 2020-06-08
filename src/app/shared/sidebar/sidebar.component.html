@@ -1,0 +1,14 @@
+<mat-nav-list>
+  <mat-divider></mat-divider>
+
+  <h2 matSubheader>Páginas</h2>
+
+  <a mat-list-item routerLinkActive="list-item-active" routerLink="/home">Principal</a>
+  <a *ngIf="userlogiado != null" mat-list-item routerLinkActive="list-item-active" routerLink="/hospitales/listar">Hospitales</a>
+  <a *ngIf="userlogiado != null" mat-list-item routerLinkActive="list-item-active" routerLink="/especialidades/listar">Especialidades</a>
+  <a *ngIf="userlogiado != null" mat-list-item routerLinkActive="list-item-active" routerLink="/doctores/listar">Doctores</a>
+  <a *ngIf="userlogiado != null" mat-list-item routerLinkActive="list-item-active" routerLink="/pacientes/listar">Pacientes</a>
+
+  <mat-divider></mat-divider>
+</mat-nav-list>
+
