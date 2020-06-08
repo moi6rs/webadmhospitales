@@ -19,7 +19,7 @@ export class DoctoresListarComponent implements OnInit {
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
   searchKey: string;
   errorMessage = '';
-  baseEndpoint = BASE_ENDPOINT + '/doctores';
+  baseEndpoint = BASE_ENDPOINT + 'documentos';
   constructor(private service: DoctorService) {}
   doctores: Doctor[];
 

@@ -19,7 +19,7 @@ export class EspecialiadesListarComponent implements OnInit {
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
   searchKey: string;
   errorMessage = '';
-  baseEndpoint = BASE_ENDPOINT + '/especialidades';
+  baseEndpoint = BASE_ENDPOINT + 'documentos';
   constructor(private especialidadService: EspecialidadService,
               private dialogService: MatDialog) {}
   especialidades: Especialidad[];

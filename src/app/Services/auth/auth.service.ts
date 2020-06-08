@@ -1,11 +1,11 @@
-import { Injectable } from '@angular/core';
-import { apiUrl } from '../../constants/api-url';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { JwtResponse } from '../../interfaces/jwt-response';
-import { AuthLoginInfo } from '../../interfaces/login-info';
-import { SignUpInfo } from '../../interfaces/sinup-info';
 
+import { AuthLoginInfo } from 'src/app/models/login-info';
+import { BASE_ENDPOINT } from 'src/app/config/app';
+import { Injectable } from '@angular/core';
+import { JwtResponse } from 'src/app/models/jwt-response';
+import { Observable } from 'rxjs';
+import { SignUpInfo } from 'src/app/models/sinup-info';
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
 };
@@ -14,8 +14,8 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class AuthService {
-  private loginUrl = apiUrl + 'auth/signin';
-  private signupUrl = apiUrl + 'auth/signup';
+  private loginUrl = BASE_ENDPOINT + 'auth/signin';
+  private signupUrl = BASE_ENDPOINT + 'auth/signup';
 
   constructor(private http: HttpClient) {
   }
