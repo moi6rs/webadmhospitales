@@ -3,7 +3,7 @@
       <button mat-icon-button (click)="toggleSideBar()">
           <mat-icon>menu</mat-icon>
       </button>
-      <span> DMG </span>
+      <span> ADM HOSPITALES </span>
 
 
       <div  *ngIf="userlogiado == null" fxFlex fxLayout="row" fxLayoutAlign="flex-end">
@@ -24,16 +24,6 @@
       </div>
       <div  *ngIf="userlogiado != null"fxFlex fxLayout="row" fxLayoutAlign="flex-end">
         <ul fxLayout="row" fxLayoutGap="20px">
-            <li>
-                <button mat-icon-button>
-                    <mat-icon>settings</mat-icon>
-                </button>
-            </li>
-            <li>
-                <button mat-icon-button>
-                    <mat-icon>help_outline</mat-icon>
-                </button>
-            </li>
             <li>
                 <button mat-button [matMenuTriggerFor]="menu">
                     <mat-icon>person_outline</mat-icon>

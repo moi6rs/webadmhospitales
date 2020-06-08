@@ -26,7 +26,7 @@ export class HeaderComponent implements OnInit {
   toggleSideBar() {
     this.toggleSideBarForMe.emit();
     setTimeout(() => {
-      window.dispatchEvent(new Event("resize"));
+      window.dispatchEvent(new Event('resize'));
     }, 300);
   }
 
@@ -47,7 +47,6 @@ export class HeaderComponent implements OnInit {
 
   cerrarSesion() {
     this.tokenStorageService.signOut();
-    this.router.navigate(["/home"]);
-    // window.location.reload();
+    this.router.navigate(['/home']);
   }
 }
