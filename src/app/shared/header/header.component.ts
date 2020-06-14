@@ -9,7 +9,7 @@ import { TokenStorageService } from 'src/app/Services/auth/token-storage.service
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  @Output() toggleSideBarForMe: EventEmitter<any> = new EventEmitter();
+  @Output() public toggleSideBarForMe = new EventEmitter();
 
   userlogiado: string;
   esUserAdmin: boolean;
